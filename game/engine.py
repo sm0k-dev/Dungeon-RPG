@@ -1,8 +1,8 @@
 import os, msvcrt
-from game.menu import *
-from game.entities.character import heroe
-from game.entities.monsters import monster
-from game.combat.battle import combat
+from game.menu import menu_bienvenida, menu_iniciar_juego
+from game.entities.character import create_heroe
+from game.world.locations import campamento_goblin, create_dungeon
+from game.combat.battle import explore_location
 def start_game():
     while True:
         #Screen
@@ -15,11 +15,14 @@ def start_game():
         #Player_Options
         if option == '1':
             heroe_name = input(menu_iniciar_juego)
-            heroe_character = heroe(heroe_name)
-            monster_gen = monster("Orco", 50, 10)
+            heroe = create_heroe(heroe_name)
+            dungeon = create_dungeon(campamento_goblin)
+            
             os.system('cls')
-            combat_result = combat(heroe_character, monster_gen)
-            print(combat_result)
+            print(f"\n¡Bienvenido {heroe['nombre']}! Tu aventura comienza en el {dungeon['name']}.\n")
+            explore_result = explore_location(heroe, dungeon)
+            print(explore_result)
+            
         elif option == '2':
             print("¡Nos veremos en otro mundo Aventurero 💀!")
         else:

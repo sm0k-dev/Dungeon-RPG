@@ -1,4 +1,4 @@
-def heroe(nombre="Heroe"):
+def create_heroe(nombre="Heroe"):
     return {
         "nombre": nombre,
         "salud": 100,
