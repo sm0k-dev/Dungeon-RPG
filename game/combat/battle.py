@@ -1,10 +1,6 @@
 from random import randint
 
 def combat(heroe, monster) -> str:
-    
-    # #Encounter
-    # print(f"{heroe['nombre']} se ha topado con un {monster['nombre']}!")
-
     #Combat_Loop
     turno = 1
     while heroe["salud"] > 0 and monster["salud"] > 0:

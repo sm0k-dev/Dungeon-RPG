@@ -1,12 +1,17 @@
-# 🗡 RPG-Fight
+# Dungeon RPG
 
-**RPG-Fight** es un juego de rol por consola desarrollado en Python. El jugador combate contra enemigos en un sistema de combate por turnos.
+**Dungeon RPG** es un juego de rol (RPG, Role-Playing Game) por consola desarrollado en Python, basado en el género de combate por turnos. Inspirado en los generos clásicos como Final Fantasy y Chrono Trigger, el jugador explora mazmorras, enfrenta enemigos y progresa en la aventura tomando decisiones estratégicas en cada turno de combate.
 
+## Características planeadas por ahora:
 
-## 📁 Estructura del Proyecto
+- Sistema de combate por turno.
+- Múltiples enemigos y escenarios.
+- Inventario y objetos.
+
+## Estructura del Proyecto:
 
 ```
-RPG-Fight
+Dungeon RPG
 ├── main.py                     # Punto de entrada del juego                  
 ├── README.md                   # Explicación del juego y cómo ejecutarlo
 │
@@ -33,7 +38,7 @@ RPG-Fight
 ```
 
 
-## ▶️ Cómo ejecutar el juego
+## Cómo ejecutar el juego:
 
 1. Asegúrate de tener Python 3 instalado.
 2. Abre una terminal en la carpeta raíz del proyecto.
@@ -42,16 +47,3 @@ RPG-Fight
 ```bash
 python main.py
 ```
-
-
-## 🧱 Dependencias
-
-Este proyecto no requiere librerías externas. Está construido solamente con módulos estándar de Python.
-
-
-## 🛠️ Características planeadas por ahora
-
-- Sistema de combate por turno.
-- Múltiples enemigos y escenarios.
-- Inventario y objetos.
-

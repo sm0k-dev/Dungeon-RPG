@@ -1,2 +1,5 @@
 # Python
 __pycache__/
+
+# Ignore the To-Do List file
+To-Do List.txt
