@@ -2,12 +2,12 @@
 def generate_hero_base_stats(nombre="Heroe") -> dict:
     """Genera un diccionario con las estadísticas base del héroe."""
     return {
-        "name": nombre,  #Heroe: Name
-        "health": 100,   #Heroe: Health_Points
-        "damage": 10,    #Heroe: Damage_Points
-        "gold": 0,       #Heroe: Gold
-        "level": 1,      #Heroe: Level
-        "experience": 0, #Heroe: Experience_Points
+        "nombre": nombre,
+        "salud": 100,
+        "ataque": 10,
+        "dinero": 0,
+        "level": 1,
+        "experiencia": 0
     }
 
 #Heroe_Creation
