@@ -1,8 +1,9 @@
 import os, msvcrt
 from game.screen_text import welcome_menu_text, get_hero_status_text, hero_options_text
 from game.entities.character import create_hero
-from game.world.locations import campamento_goblin, create_dungeon
-from game.combat.battle import explore_location
+from game.world.dungeons import create_dungeon, dungeons
+from game.combat.battle import explore_dungeon
+
 
 def start_game():
     """Inicia el juego mostrando el menú principal y gestionando las opciones del usuario."""
@@ -34,6 +35,10 @@ def start_game():
 
                 #Menu_Options
                 if option == '1': #Explore_Dungeons
+                    print(get_hero_status_text(hero))
+                    print("\nSelecciona un dungeon para explorar:\n")
+                    for i in range(len(dungeons)):
+                        print(f"{i + 1}. {dungeons[i]['name']}")
                     pass
                 elif option == '2': #Shop
                     pass

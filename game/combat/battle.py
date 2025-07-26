@@ -39,7 +39,7 @@ def combat(heroe, monster) -> str:
     #Combat_Result
     
     
-def explore_location(heroe, dungeon) -> str:
+def explore_dungeon(heroe, dungeon) -> str:
     # #Exploration
     for monster in dungeon["rooms"]:
         if monster is not None:
