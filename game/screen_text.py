@@ -18,14 +18,14 @@ Iniciando tu aventura...
 #Hero_Creation
 
 #Hero_Status
-def get_hero_status_text(hero) -> str:
+def get_hero_status_text(heroe) -> str:
     return f"""
-=== Estado de {hero["nombre"]} ===
-Salud: {hero["salud"]}
-Nivel: {hero["level"]}
-Experiencia: {hero["experiencia"]}
-Daño: {hero["ataque"]}
-Oro: {hero["dinero"]}
+=== Estado de {heroe["nombre"]} ===
+Salud: {heroe["salud"]}
+Nivel: {heroe["level"]}
+Experiencia: {heroe["experiencia"]}
+Daño: {heroe["ataque"]}
+Oro: {heroe["dinero"]}
 """
 #Hero_Status
 
@@ -47,3 +47,28 @@ def get_dungeon_availables(dungeons) -> str:
     dungeon_list_text += f"{len(dungeons) + 1}. Volver"
     return dungeon_list_text
 #Dungeons_Availables
+
+#Combat_Screen
+def get_combat_menu_text(heroe, monster, description, heroe_damage, monster_damage) -> str:
+    """Actualiza y entrega a la terminal la información del combate según el turno correspondiente."""
+    return f"""
+
+
+
+
+
+
+
+    
+    
+FOTOGRAMA ASCII AQUI
+    
+Lvl. {monster["nivel"]} {monster["nombre"]}: {monster["salud"]} {heroe_damage}
+{description}
+===============================================
+|1. Atacar     | {" "*(len(heroe["nombre"])+2)}HP {" "*(len(str(heroe["salud"]))-2)}MP
+|2. Magia      | {heroe["nombre"]}: {heroe["salud"]} {heroe["mana"]}
+|3. Bloquear   | {" "*(len(heroe["nombre"])+2)}{monster_damage}
+|4. Inventario |
+|5. Huir       |
+==============================================="""

@@ -4,6 +4,7 @@ def generate_hero_base_stats(nombre="Heroe") -> dict:
     return {
         "nombre": nombre,
         "salud": 100,
+        "mana": 100,
         "ataque": 10,
         "dinero": 0,
         "level": 1,
@@ -20,5 +21,5 @@ def create_hero() -> dict:
     hero_name = input(hero_creation_text)
 
     #Generates hero with base stats
-    hero = generate_hero_base_stats(hero_name)
-    return hero
+    heroe = generate_hero_base_stats(hero_name)
+    return heroe

@@ -20,13 +20,13 @@ def start_game():
         #Menu_Options
         if option == '1': #Play
             #Heroe_Creation
-            hero = create_hero()
+            heroe = create_hero()
             #Loop: Game_Menu
             while True:
                 #Screen: Game_Menu
                 os.system('cls')
                 #Hero_Status
-                print(get_hero_status_text(hero))
+                print(get_hero_status_text(heroe))
                 #Hero_Options
                 print(hero_options_text)
                 option = input("Selecciona una opción: ")
@@ -38,7 +38,7 @@ def start_game():
                     #Selección del Dungeon
                     while True:
                         os.system('cls')
-                        print(get_hero_status_text(hero))
+                        print(get_hero_status_text(heroe))
                         print(get_dungeon_availables(dungeons))
                         dungeon_choice = input("\nSelecciona un dungeon a explorar: ")
                         if not (dungeon_choice.isdigit() and 1 <= int(dungeon_choice) <= len(dungeons) + 1):
@@ -51,9 +51,11 @@ def start_game():
                     # Creación y exploración del Dungeon
                     if dungeon_choice != len(dungeons) + 1:
                         dungeon = create_dungeon(dungeons[dungeon_choice - 1])
-                        print(f"\n{hero['nombre']} ha entrado en el dungeon: {dungeon['name']}")
-                        explore_dungeon(hero, dungeon)
+                        print(f"\n{heroe['nombre']} ha entrado en el dungeon: {dungeon['name']}")
+                        explore_dungeon(heroe, dungeon)
                     
+                    if heroe["salud"] == 0:
+                        break
                     pass
                 elif option == '2': #Shop
                     pass
