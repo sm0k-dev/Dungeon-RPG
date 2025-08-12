@@ -6,9 +6,11 @@ def create_dungeon(dungeon) -> dict:
     for i in range(len(dungeon["rooms"])):
         monster_type = dungeon["monsters"][randint(0, 1)]
         dungeon["rooms"][i] = create_monster(
-            nombre=monster_type["nombre"],
-            salud=monster_type["salud"],
-            ataque=monster_type["ataque"]
+            name=monster_type["name"],
+            health=monster_type["health"],
+            attack=monster_type["attack"],
+            gold=monster_type["gold"],
+            level=monster_type["level"],
         )
     return dungeon
 
@@ -17,8 +19,8 @@ goblin_camp = {
     "name": "Campamento Goblin",
     "rooms": [None] * 20,
     "monsters": [
-        {"nombre": "Goblin", "salud": 20, "ataque": 5},
-        {"nombre": "Goblin Elite", "salud": 30, "ataque": 7}
+        {"name": "Goblin", "health": 20, "attack": 5, "gold": 0, "level": 1},
+        {"name": "Goblin Elite", "health": 30, "attack": 7, "gold": 5, "level": 3}
     ]
 }
 
@@ -26,8 +28,8 @@ wolf_den = {
     "name": "Guarida de Lobos",
     "rooms": [None] * 20,
     "monsters": [
-        {"nombre": "Lobo", "salud": 18, "ataque": 6},
-        {"nombre": "Lobo Alfa", "salud": 32, "ataque": 10}
+        {"name": "Lobo", "health": 18, "attack": 6, "gold": 0, "level": 2},
+        {"name": "Lobo Alfa", "health": 32, "attack": 10, "gold": 7, "level": 5}
     ]
 }
 
@@ -35,8 +37,8 @@ fallen_mausoleum = {
     "name": "Mausoleo de los Caídos",
     "rooms": [None] * 20,
     "monsters": [
-        {"nombre": "Esqueleto", "salud": 15, "ataque": 4},
-        {"nombre": "Zombi", "salud": 20, "ataque": 8}
+        {"name": "Esqueleto", "health": 15, "attack": 4, "gold": 2, "level": 4},
+        {"name": "Zombi", "health": 20, "attack": 8, "gold": 3, "level": 4}
     ]
 }
 
@@ -44,8 +46,8 @@ orc_stronghold = {
     "name": "Bastión de Orcos",
     "rooms": [None] * 20,
     "monsters": [
-        {"nombre": "Orco", "salud": 25, "ataque": 8},
-        {"nombre": "Orco Elite", "salud": 35, "ataque": 14}
+        {"name": "Orco", "health": 25, "attack": 8, "gold": 4, "level": 5},
+        {"name": "Orco Elite", "health": 35, "attack": 14, "gold": 10, "level": 10}
     ]
 }
 

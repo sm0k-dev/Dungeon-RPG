@@ -1,4 +1,7 @@
-#Main_Menu
+import os
+
+
+# Texto del menu principal
 welcome_menu_text = """
 === RPG-Fight ===
 ¡Bienvenido! Prepárate para la aventura.
@@ -7,68 +10,67 @@ welcome_menu_text = """
 2. Salir del Juego
 
 """
-#Main_Menu
-    
-#Hero_Creation
+
+
+# Texto de creación del héroe
 hero_creation_text = """
 === Creación de Héroe ===
 Iniciando tu aventura...
 
 ¿Cómo te llamas héroe?: """
-#Hero_Creation
 
-#Hero_Status
-def get_hero_status_text(heroe) -> str:
+
+# Texto de estado del héro
+def get_hero_status_text(heroe: dict) -> str:
     return f"""
-=== Estado de {heroe["nombre"]} ===
-Salud: {heroe["salud"]}
+=== Estado de {heroe["name"]} ===
+Salud: {heroe["health"]}
 Nivel: {heroe["level"]}
-Experiencia: {heroe["experiencia"]}
-Daño: {heroe["ataque"]}
-Oro: {heroe["dinero"]}
+Experiencia: {heroe["experience"]}
+Daño: {heroe["attack"]}
+Oro: {heroe["gold"]}
 """
-#Hero_Status
 
-#Hero_Options
+# Texto del menu de opciones del héroe
 hero_options_text = """
 === Opciones ===
 1. Explorar Dungeons.
-2. Comprar objetos.
-3. Descansar.
-4. Terminar viaje.
+2. Tienda.
+3. Posada.
+4. Terminar el viaje.
 """
-#Hero_Options
 
-#Dungeons_Availables
-def get_dungeon_availables(dungeons) -> str:
+
+# Texto de selección de dungeons disponibles
+def get_dungeon_availables_text(dungeons: list) -> str:
     dungeon_list_text = "\n=== Dungeons Disponibles ===\n"
     for i, dungeon in enumerate(dungeons):
         dungeon_list_text += f"{i + 1}. {dungeon['name']}\n"
     dungeon_list_text += f"{len(dungeons) + 1}. Volver"
     return dungeon_list_text
-#Dungeons_Availables
+
 
 #Combat_Screen
-def get_combat_menu_text(heroe, monster, description, heroe_damage, monster_damage) -> str:
+def get_combat_menu_text(dungeon_name, heroe, monster, description="") -> str:
     """Actualiza y entrega a la terminal la información del combate según el turno correspondiente."""
-    return f"""
+    os.system('cls')
+    return f"""===========================================================
+  Dungeon: {dungeon_name}
 
 
 
 
+                   Fotograma ASCII AQUI
 
 
 
-    
-    
-FOTOGRAMA ASCII AQUI
-    
-Lvl. {monster["nivel"]} {monster["nombre"]}: {monster["salud"]} {heroe_damage}
-{description}
-===============================================
-|1. Atacar     | {" "*(len(heroe["nombre"])+2)}HP {" "*(len(str(heroe["salud"]))-2)}MP
-|2. Magia      | {heroe["nombre"]}: {heroe["salud"]} {heroe["mana"]}
-|3. Bloquear   | {" "*(len(heroe["nombre"])+2)}{monster_damage}
-|4. Inventario |
-|5. Huir       |
-==============================================="""
+
+-----------------------------------------------------------
+  Heroe    : {heroe['name']}            | Lv.{heroe['level']} | HP: {heroe['health']}/{heroe['health_max']}
+  Monstruo : {monster['name']}        | Lv.{heroe['level']} | HP: {monster['health']}/{monster['health_max']}
+
+  Mensaje  : {description}
+
+===========================================================
+   [1] Atacar   [2] Bloquear   [3] Inventario   [4] Huir
+==========================================================="""

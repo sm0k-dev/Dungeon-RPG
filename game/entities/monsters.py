@@ -1,7 +1,11 @@
-def create_monster(nombre="Goblin", salud=20, ataque=5, nivel=1) -> dict:
+def create_monster(name="Goblin", health=20, attack=5, gold=0, level=1) -> dict:
+    """Retorna un diccionario con estadísticas base del mounstro."""
     return {
-        "nombre": nombre,
-        "salud": salud,
-        "ataque": ataque,
-        "nivel": nivel
+        "name": name,
+        "health_max": health,
+        "health": health,
+        "attack": attack,
+        "gold": gold,
+        "level": level,
+        "experience": 0
     }

@@ -1,111 +1,102 @@
+import os, msvcrt
 from random import randint
+from game.screen_text import get_combat_menu_text
 
-def combat(heroe, monster) -> str:
+def combat(dungeon_name, heroe, monster) -> str:
     """Ejecuta el combate por turnos entre el héroe y el monstruo. Devuelve a la terminal información respecto a la pelea."""
-    import os, msvcrt
-    from game.screen_text import get_combat_menu_text
-    heroe_damage = ""
-    monster_damage = ""
     #Loop: Combat
     while True:
+        # Turno del héroe
         os.system('cls')
         block = False
-        description = ""
-        print(get_combat_menu_text(heroe, monster, description, heroe_damage, monster_damage))
+        description = "Es tu turno, elige una acción."
+        print(get_combat_menu_text(dungeon_name, heroe, monster, description))
         option = input("Selecciona una opción: ")
-        if option == '1':   #Attack
+        if option == '1':   #Atacar
             chance = randint(1,10) <= 9
             if chance:
-                description = f"{heroe["nombre"]} ataca exitosamente al Goblin."
-                heroe_damage = f"-{heroe["ataque"]}"
-                os.system('cls')
-                print(get_combat_menu_text(heroe, monster, description, heroe_damage, monster_damage))
-                monster["salud"] -= heroe["ataque"]
+                description = f"⚔️  {heroe['name']} lanza un poderoso ataque contra {monster['name']} y le causa daño! 💥"
+                monster["health"] -= heroe["attack"]
             else:
-                description = f"{heroe["nombre"]} falla el ataque."
-                heroe_damage = "MISS"
-                print(get_combat_menu_text(heroe, monster, description, heroe_damage, monster_damage))   
-        elif option == '2': #Magic
-            pass
-        elif option == '3': #Block
-            description = f"{heroe["nombre"]} bloqueará el siguiente ataque"
-            os.system('cls')
-            print(get_combat_menu_text(heroe, monster, description, heroe_damage, monster_damage))
+                description = f"😥  {heroe['name']} intenta atacar, pero {monster['name']} esquiva hábilmente el golpe!"
+        elif option == '2': #Bloquear
             block = True
-        elif option == '4': #Inventory
-            pass
-        elif option == '5': #Flee
-            description = f"{heroe["nombre"]} intentó huir!"
-            os.system('cls')
-            print(get_combat_menu_text(heroe, monster, description, heroe_damage, monster_damage))
-        else:               #InvalidOption
-            description = "Opción Invalida, intenta de nuevo"
-            os.system('cls')
-            print(get_combat_menu_text(heroe, monster, description, heroe_damage, monster_damage))
+            description = f"🛡️  {heroe['name']} se prepara y levanta su escudo, ¡el próximo ataque será reducido a la mitad!"
+        elif option == '3': #Inventario
+            description = "🎒  El inventario aún está en construcción."
+            print(get_combat_menu_text(dungeon_name, heroe, monster, description))
+            print("Presiona cualquier tecla para continuar...")
+            msvcrt.getch()
+            continue
+        elif option == '4': #Huir
+            escape_chance = randint(1, 10) <= 7
+            if escape_chance:
+                description = f"🏃‍♂️  {heroe['name']} corre con todas sus fuerzas y logra escapar de las garras de {monster['name']}!"
+                print(get_combat_menu_text(dungeon_name, heroe, monster, description))
+                print("Presiona cualquier tecla para continuar...")
+                msvcrt.getch()
+                break
+            else:
+                description = f"🏃‍♂️  {heroe['name']} intentó huir, pero el monstruo {monster['name']} lo alcanzó!"
+        else:               #Opción inválida
+            description = "❌ Opción inválida."
+            print(get_combat_menu_text(dungeon_name, heroe, monster, description))
+            print("Presiona cualquier tecla para continuar...")
+            msvcrt.getch() 
+            continue 
+        print(get_combat_menu_text(dungeon_name, heroe, monster, description))
+        
+        # Verifica si el monstruo ha sido derrotado
+        if monster["health"] <= 0:
+            monster["health"] = 0
+            description = f"🎉 {heroe['name']} ha derrotado a {monster['name']} y la mazmorra tiembla ante su victoria."
+            print(get_combat_menu_text(dungeon_name, heroe, monster, description))
+            break
+        print("Presiona cualquier tecla para continuar...")
         msvcrt.getch()
         
-        heroe_damage = ""
-
-        if monster["salud"] <= 0:
-            monster["salud"] = 0
-            description = f"{heroe["nombre"]} ha derrotado a {monster["nombre"]}." 
-            os.system('cls')
-            print(get_combat_menu_text(heroe, monster, description, heroe_damage, monster_damage))
-            break
-        
+        # Turno del monstruo
         chance = randint(1,10) <= 9
         if chance:
             if block:
-                description = f"{heroe["nombre"]} logró bloquear el ataque"
-                monster_damage = f"-{int(monster["ataque"]*(50/100))}"
+                description = f"🛡️  {heroe['name']} bloquea el ataque de {monster['name']} y solo recibe la mitad del daño."
+                heroe["health"] -= int(monster["attack"]*(50/100))
             else:
-                description = f"{monster["nombre"]} atacó a {heroe["nombre"]}."
-                monster_damage = f"-{monster["ataque"]}"
-            os.system('cls')
-            print(get_combat_menu_text(heroe, monster, description, heroe_damage, monster_damage))
-            if block:
-                heroe["salud"] -= int(monster["ataque"]*(50/100))
-            else:
-                heroe["salud"] -= monster["ataque"]
-
+                description = f"💢 {monster['name']} lanza un ataque feroz contra {heroe['name']} y le causa daño!"
+                heroe["health"] -= monster["attack"]
         else:
-            description = f"{monster["nombre"]} fallo al atacar a {heroe["nombre"]}."
-            monster_damage = "MISS"
-            os.system('cls')
-            print(get_combat_menu_text(heroe, monster, description, heroe_damage, monster_damage))
-        msvcrt.getch()
+            description = f"😅  {monster['name']} intenta atacar, pero falla y {heroe['name']} esquiva con agilidad!"
+        print(get_combat_menu_text(dungeon_name, heroe, monster, description))
 
-        monster_damage = ""
-
-        if heroe["salud"] <= 0:
-            heroe["salud"] = 0
-            description = f"{heroe["nombre"]} ha sido derrotado." 
-            os.system('cls')
-            print(get_combat_menu_text(heroe, monster, description, heroe_damage, monster_damage))
+        if heroe["health"] <= 0:
+            heroe["health"] = 0
+            description = f"☠️  {heroe['name']} ha caído en batalla. ¡La leyenda termina aquí... por ahora!"
+            print(get_combat_menu_text(dungeon_name, heroe, monster, description))
             break
-    msvcrt.getch()
+        print("Presiona cualquier tecla para continuar...")
+        msvcrt.getch()
     
     
 def explore_dungeon(heroe, dungeon) -> str:
+    dungeon_name = dungeon["name"]
     # #Exploration
     for monster in dungeon["rooms"]:
-        if monster is not None:
-            while True:
-                decision = input(f"\n¿Te has topado con un {monster['nombre']}, deseas pelear? (s/n): ").strip().lower()
-                if decision == 's':
-                    combat(heroe, monster)
-                    break
-                elif decision == 'n':
-                    return f"\n{heroe['nombre']} decide retirarse de {dungeon['name']}."
-                else:
-                    print("Por favor, responde con 's' para sí o 'n' para no.")
-            if heroe["salud"] <= 0:
+        while True:
+            decision = input(f"\n¿Te has topado con un {monster['name']}, deseas pelear? (s/n): ").strip().lower()
+            if decision == 's':
+                combat(dungeon_name, heroe, monster)
                 break
+            elif decision == 'n':
+                return f"\n{heroe['name']} decide retirarse de {dungeon['name']}."
+            else:
+                print("Por favor, responde con 's' para sí o 'n' para no.")
+        if heroe["health"] <= 0:
+            break
     #Exploration
     
     #Exploration Result
-    if heroe["salud"] > 0:
-        return f"{heroe['nombre']} ha explorado completamente {dungeon['name']}."
+    if heroe["health"] > 0:
+        return f"{heroe['name']} ha explorado completamente {dungeon['name']}."
     else:
-        return f"{heroe['nombre']} no puede continuar explorando debido a sus heridas."
+        return f"{heroe['name']} no puede continuar explorando debido a sus heridas."
      #Exploration Result

@@ -1,12 +1,21 @@
 # Dungeon RPG
 
-**Dungeon RPG** es un juego de rol (RPG, Role-Playing Game) por consola desarrollado en Python, basado en el género de combate por turnos. Inspirado en los generos clásicos como Final Fantasy y Chrono Trigger, el jugador explora mazmorras, enfrenta enemigos y progresa en la aventura tomando decisiones estratégicas en cada turno de combate.
+**Dungeon RPG** es un juego de rol (RPG, Role-Playing Game) por consola desarrollado en Python, basado en el género de combate por turnos. Inspirado en los generos clásicos como Final Fantasy y Chrono Trigger, el jugador explora dungeons, enfrenta enemigos y progresa en la aventura tomando decisiones estratégicas en cada turno de combate.
 
 ## Características planeadas por ahora:
 
-- Sistema de combate por turno.
-- Múltiples enemigos y escenarios.
-- Inventario y objetos.
+- [x] Sistema de combate por turno.
+- [x] Múltiples enemigos.
+- [x] Múltiples dungeons.
+- [ ] Inventario y objetos.
+- [ ] Tienda.
+- [ ] Posada.
+
+## Características pensadas a futuro
+
+- Subir de nivel
+- Utilizar habilidades y Magia
+- Seleccion de clase (Espadachin, Arquero, Mago, etc)
 
 ## Estructura del Proyecto:
 
@@ -17,7 +26,7 @@ Dungeon RPG
 │
 ├── game                        # Código fuente del juego
 │   ├── engine.py               # Motor principal del juego (loop, lógica general)
-│   ├── menu.py                 # Menús, inicio, opciones
+│   ├── screen_text.py          # Menús, inicio, opciones
 │   ├── input_handler.py        # Entrada del usuario (lectura de comandos, validaciones)
 │   │
 │   ├── entities                # Entidades del juego: personaje, monstruos, NPCs
@@ -28,7 +37,7 @@ Dungeon RPG
 │   │   └── battle.py           # Control del combate
 │   │
 │   ├── world                   # Escenarios, mapa, exploración
-│   │   └── locations.py        # Escenarios, calabozos, etc.
+│   │   └── dungeons.py        # Escenarios, calabozos, etc.
 │   │
 │   └── utils                   # Utilidades varias
 │       └── helpers.py          # Funciones auxiliares

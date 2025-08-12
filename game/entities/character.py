@@ -1,25 +1,24 @@
-#Heroe_Statistics
-def generate_hero_base_stats(nombre="Heroe") -> dict:
-    """Genera un diccionario con las estadísticas base del héroe."""
+from game.screen_text import hero_creation_text
+
+
+# Creación del héroe
+def create_hero(hero_name="Hero") -> dict:
+    """Retorna un diccionario con estadísticas base del héroe."""
     return {
-        "nombre": nombre,
-        "salud": 100,
+        "name": hero_name,
+        "health_max": 100,
+        "health": 100,
         "mana": 100,
-        "ataque": 10,
-        "dinero": 0,
+        "attack": 10,
+        "gold": 0,
         "level": 1,
-        "experiencia": 0
+        "experience": 0
     }
+    
 
-#Heroe_Creation
-def create_hero() -> dict:
-    """Crea un héroe inicial con estadísticas base."""
-    #Loads necessary text for character creation
-    from game.screen_text import hero_creation_text
-
-    #Prompts user for hero name
+# Generación del héroe
+def generate_hero() -> dict:
+    """Genera un héroe con un nombre ingresado por el usuario."""
     hero_name = input(hero_creation_text)
-
-    #Generates hero with base stats
-    heroe = generate_hero_base_stats(hero_name)
+    heroe = create_hero(hero_name)
     return heroe
